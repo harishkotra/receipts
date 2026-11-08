@@ -4,7 +4,10 @@ A sports handicapper that cannot rewrite its own history.
 
 Every pick is sealed into Walrus Memory before kickoff, with its reasoning and its confidence. Every grade is sealed after full time. The blob hash of the pick never moves, so the only way to look good in hindsight is to have been right at the time.
 
----
+<img width="1526" height="4802" alt="screencapture-localhost-4310-2026-11-08-23_30_21" src="https://github.com/user-attachments/assets/423b43d3-afe8-43b8-a432-ad25e7e21c5e" />
+<img width="1334" height="821" alt="Screenshot at Nov 08 23-31-20" src="https://github.com/user-attachments/assets/6c1ac337-3106-4eae-96b7-35141544cfd1" />
+<img width="1499" height="889" alt="Screenshot at Nov 08 23-30-54" src="https://github.com/user-attachments/assets/c9150349-6b35-488f-92d6-d36ee5621f47" />
+<img width="1440" height="1206" alt="Screenshot at Nov 08 23-30-39" src="https://github.com/user-attachments/assets/a24901fb-6e18-46c5-b03b-f1ac2a55cdfa" />
 
 ## The problem this is aimed at
 
