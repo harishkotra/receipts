@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Receipts — picks sealed before kickoff, graded after full time</title>
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<header class="mast">
+  <div>
+    <h1>Receipts</h1>
+    <p class="sub">A handicapper that cannot rewrite its own history. Every pick is written to Walrus Memory before kickoff, every grade after full time, and the blob hash never moves.</p>
+  </div>
+  <dl class="meta" id="meta">
+    <div><dt>account</dt><dd id="m-account">—</dd></div>
+    <div><dt>delegate</dt><dd id="m-delegate">—</dd></div>
+    <div><dt>namespace</dt><dd id="m-ns">—</dd></div>
+    <div><dt>seals written</dt><dd id="m-seals" class="figure">—</dd></div>
+  </dl>
+</header>
+
+<main>
+
+<section class="band" id="pick-band">
+  <div class="band-head">
+    <h2>1 &nbsp;The pick, before kickoff</h2>
+    <p class="band-note" id="pick-when">—</p>
+  </div>
+  <div class="pick-grid">
+    <div class="pick-main">
+      <div class="pick-head">
+        <div>
+          <p class="fixture" id="p-fixture">No pick sealed yet</p>
+          <p class="market" id="p-market">The agent seals its first pick when a fixture is on the board.</p>
+        </div>
+        <div class="call">
+          <b id="p-call-num">—</b>
+          <span id="p-call-word">no pick</span>
+          <em id="p-call-delta"></em>
+        </div>
+      </div>
+
+      <div class="axis-wrap">
+        <div class="axis" id="axis">
+          <div class="axis-rule"></div>
+          <span class="tick" style="left:0%"><b>0.45</b><i>floor</i></span>
+          <span class="tick" style="left:100%"><b>1.00</b><i>certain</i></span>
+          <span class="marker base" id="mark-base" hidden><i>base</i></span>
+          <span class="marker final" id="mark-final" hidden><i>sealed</i></span>
+        </div>
+      </div>
+
+      <p class="reason" id="p-reason">—</p>
+
+      <div class="seal">
+        <div><dt>blob</dt><dd id="p-blob" class="mono">—</dd></div>
+        <div><dt>content hash</dt><dd id="p-hash" class="mono">—</dd></div>
+        <div><dt>sealed at</dt><dd id="p-sealed" class="mono">—</dd></div>
+        <div><dt>writes</dt><dd id="p-verdict" class="mono">—</dd></div>
+      </div>
+    </div>
+
+    <aside class="evidence">
+      <h3>What it recalled first</h3>
+      <p class="evidence-note">Prior graded receipts for this team and market. This is why the number moved.</p>
+      <ol id="evidence-list"><li class="empty">No prior receipts to recall.</li></ol>
+    </aside>
+  </div>
+</section>
+
+<section class="band" id="grade-band">
+  <div class="band-head">
+    <h2>2 &nbsp;The grade, after full time</h2>
+    <p class="band-note" id="grade-when">—</p>
+  </div>
+  <div class="grade-grid">
+    <div class="result">
+      <p class="scoreline" id="g-score">—</p>
+      <p class="result-word" id="g-word">Not graded</p>
+      <p class="result-note" id="g-note">A pick is graded only once the fixture has a final score in the results feed.</p>
+    </div>
+    <div class="immutable">
+      <h3>The hash did not move</h3>
+      <table class="hcheck" id="hcheck">
+        <tbody>
+          <tr><th>pick hash, sealed</th><td class="mono" id="h-before">—</td></tr>
+          <tr><th>pick hash, re-read from memory</th><td class="mono" id="h-after">—</td></tr>
+          <tr><th>grade blob</th><td class="mono" id="h-grade">—</td></tr>
+          <tr><th>verification</th><td id="h-verdict">—</td></tr>
+        </tbody>
+      </table>
+      <button id="verify-btn" class="btn" disabled>Re-read both records from Walrus</button>
+      <p class="hint" id="verify-hint">Re-reads the pick and the grade out of memory and recomputes the hash locally.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="band-head">
+    <h2>3 &nbsp;The board, two sides</h2>
+    <p class="band-note">Humans seal picks under their own delegate key and are graded by the same rule.</p>
+  </div>
+  <div id="standings" class="standings"></div>
+  <div class="table-scroll">
+  <table class="board" id="board-table">
+    <colgroup><col class="c-kick" /><col /><col /><col class="c-conf" /><col class="c-verd" /><col class="c-rec" /></colgroup>
+    <thead>
+      <tr><th>kickoff</th><th>fixture</th><th>market</th><th class="num">confidence</th><th>verdict</th><th>receipt</th></tr>
+    </thead>
+    <tbody id="board-body"><tr><td colspan="6" class="empty">Board is loading.</td></tr></tbody>
+  </table>
+  </div>
+
+  <div class="join">
+    <div>
+      <h3>Join with your own memory space</h3>
+      <p class="join-note">Connect a delegate key, and your picks are sealed under your account and graded by the identical market rule. No house edge, no edit button.</p>
+    </div>
+    <form id="join-form" autocomplete="off">
+      <input id="join-name" name="name" placeholder="Your name" required />
+      <input id="join-agent" name="agentId" placeholder="Delegate public key" required />
+      <button class="btn" type="submit">Open my board</button>
+    </form>
+    <p class="hint" id="join-msg"></p>
+    <ul id="roster" class="roster"></ul>
+
+    <h3 class="seal-head">Seal a pick under your name</h3>
+    <form id="pick-form" autocomplete="off">
+      <input id="hp-name" placeholder="Name on the board" required />
+      <select id="hp-fixture" required></select>
+      <select id="hp-market">
+        <option value="match_winner">match winner</option>
+        <option value="over_2_5">over 2.5 goals</option>
+        <option value="under_2_5">under 2.5 goals</option>
+        <option value="btts">both teams score</option>
+        <option value="ht_leader_wins">half-time leader wins</option>
+        <option value="comeback">comeback</option>
+      </select>
+      <input id="hp-conf" type="number" min="0.05" max="0.95" step="0.01" value="0.6" required />
+      <button class="btn" type="submit">Seal it</button>
+    </form>
+    <p class="hint" id="hp-msg"></p>
+  </div>
+</section>
+
+<section class="band price-band">
+  <div class="band-head">
+    <h2>4 &nbsp;Ten cents a verified pick</h2>
+    <p class="band-note">x402, settled on Sui. The unpaid request returns 402 with the exact requirement.</p>
+  </div>
+  <div class="pay">
+    <div class="pay-copy">
+      <p>A pick is free to read. A pick with its memory proof attached is the paid one: the receipt, the blob id, the sealed hash and the grade, re-read from Walrus at request time.</p>
+      <p class="mono small" id="pay-terms">—</p>
+    </div>
+    <div class="pay-act">
+      <button id="pay-btn" class="btn" disabled>Request a paid receipt</button>
+      <pre id="pay-out" class="out" hidden></pre>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="band-head">
+    <h2>5 &nbsp;Every receipt</h2>
+    <p class="band-note" id="ledger-note">—</p>
+  </div>
+  <p class="band-intro">Replayed fixtures were sealed during the backtest, in the order the matches were played, so their write times are all this evening. The ordering claim rests on the hash, not on the clock: a pick sealed before a result existed cannot be edited once the result is known.</p>
+  <div class="table-scroll">
+  <table class="ledger" id="ledger-table">
+    <colgroup><col class="c-when" /><col /><col /><col class="c-conf" /><col class="c-res" /><col class="c-blob" /></colgroup>
+    <thead>
+      <tr><th>sealed</th><th>fixture</th><th>market</th><th class="num">conf</th><th>result</th><th>blob</th></tr>
+    </thead>
+    <tbody id="ledger-body"><tr><td colspan="6" class="empty">No receipts yet.</td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+</main>
+
+<footer class="colophon">
+  <p>Built By Harish Kotra: <a href="https://harishkotra.me">harishkotra.me</a></p>
+  <p>Checkout my other builds: <a href="https://dailybuild.xyz">dailybuild.xyz</a></p>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>

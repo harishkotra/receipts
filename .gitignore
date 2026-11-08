@@ -1,0 +1,66 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+build/
+web/dist/
+*.tsbuildinfo
+.turbo/
+.cache/
+
+# secrets: the delegate private key lives only here
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# local state: the ledger is a mirror of Walrus, never a source of truth
+data/ledger.json
+data/humans.json
+data/fake-memory.json
+data/*.tmp
+data/*.bak
+# data/wc2026.json IS committed on purpose: the replay corpus is the test fixture
+
+# logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# test and coverage output
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# screenshots and design probes are local artefacts
+shots/
+/tmp-*
+*.probe.*
+
+# deploy tooling
+.vercel/
+.netlify/
+
+# editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS noise
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# release zips built locally
+*.zip
+docs/

@@ -1,0 +1,32 @@
+{
+  "name": "receipts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "author": "Harish Kotra",
+  "description": "Receipts — a football handicapper whose record you cannot edit.",
+  "scripts": {
+    "dev": "tsx watch server/index.ts",
+    "start": "tsx server/index.ts",
+    "mem:check": "tsx scripts/mem-check.ts",
+    "seed": "tsx scripts/seed.ts",
+    "seal:upcoming": "tsx scripts/seal-upcoming.ts",
+    "grade": "tsx scripts/grade.ts",
+    "reset": "rm -f data/ledger.json data/fake-memory.json data/humans.json",
+    "verify": "tsx scripts/verify.ts"
+  },
+  "dependencies": {
+    "@mysten-incubation/memwal": "^0.1.13",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.7.4",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}
